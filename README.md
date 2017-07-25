@@ -1,5 +1,5 @@
 # BossBarAPI
-BossBarAPI for PocketMine. Inspired by http://bitbucket.org/inventivetalent/bossbarapi/
+BossBarAPI for PocketMine. Inspired by https://github.com/InventivetalentDev/BossBarAPI 
 
 Poggit status + download: [![Poggit-CI](https://poggit.pmmp.io/ci.badge/thebigsmileXD/BossBarAPI/BossBarAPI)](https://poggit.pmmp.io/ci/thebigsmileXD/BossBarAPI/BossBarAPI)
 

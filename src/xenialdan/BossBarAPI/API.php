@@ -32,18 +32,11 @@ class API{
 		$packet = new AddEntityPacket();
 		$packet->entityRuntimeId = $eid;
 		$packet->type = 52;
-		$packet->yaw = 0;
-		$packet->pitch = 0;
-		$packet->speedX = 0;
-		$packet->speedY = 0;
-		$packet->speedZ = 0;
 		$packet->metadata = [Entity::DATA_LEAD_HOLDER_EID => [Entity::DATA_TYPE_LONG, -1], Entity::DATA_FLAGS => [Entity::DATA_TYPE_LONG, 0 ^ 1 << Entity::DATA_FLAG_SILENT ^ 1 << Entity::DATA_FLAG_INVISIBLE ^ 1 << Entity::DATA_FLAG_NO_AI], Entity::DATA_SCALE => [Entity::DATA_TYPE_FLOAT, 0],
 			Entity::DATA_NAMETAG => [Entity::DATA_TYPE_STRING, $title], Entity::DATA_BOUNDING_BOX_WIDTH => [Entity::DATA_TYPE_FLOAT, 0], Entity::DATA_BOUNDING_BOX_HEIGHT => [Entity::DATA_TYPE_FLOAT, 0]];
 		foreach ($players as $player){
 			$pk = clone $packet;
-			$pk->x = $player->x;
-			$pk->y = $player->y - 28;
-			$pk->z = $player->z;
+			$pk->position = $player->getPosition()->asVector3()->subtract(0, 28);
 			$player->dataPacket($pk);
 		}
 
@@ -77,16 +70,9 @@ class API{
 		$packet = new AddEntityPacket();
 		$packet->entityRuntimeId = $eid;
 		$packet->type = 52;
-		$packet->yaw = 0;
-		$packet->pitch = 0;
-		$packet->speedX = 0;
-		$packet->speedY = 0;
-		$packet->speedZ = 0;
+		$packet->position = $player->getPosition()->asVector3()->subtract(0, 28);
 		$packet->metadata = [Entity::DATA_LEAD_HOLDER_EID => [Entity::DATA_TYPE_LONG, -1], Entity::DATA_FLAGS => [Entity::DATA_TYPE_LONG, 0 ^ 1 << Entity::DATA_FLAG_SILENT ^ 1 << Entity::DATA_FLAG_INVISIBLE ^ 1 << Entity::DATA_FLAG_NO_AI], Entity::DATA_SCALE => [Entity::DATA_TYPE_FLOAT, 0],
 			Entity::DATA_NAMETAG => [Entity::DATA_TYPE_STRING, $title], Entity::DATA_BOUNDING_BOX_WIDTH => [Entity::DATA_TYPE_FLOAT, 0], Entity::DATA_BOUNDING_BOX_HEIGHT => [Entity::DATA_TYPE_FLOAT, 0]];
-		$packet->x = $player->x;
-		$packet->y = $player->y - 28;
-		$packet->z = $player->z;
 		$player->dataPacket($packet);
 
 		$bpk = new BossEventPacket(); // This updates the bar. According to shoghi this should not even be needed, but #blameshoghi, it doesn't update without
