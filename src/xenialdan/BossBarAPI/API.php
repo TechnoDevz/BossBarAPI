@@ -12,6 +12,7 @@ use pocketmine\Player;
 use pocketmine\Server;
 
 class API{
+	const ENTITY = 37;//52 - 37 is slime, inspired by MiNET
 
 	/**
 	 * Sends the text to all players
@@ -31,7 +32,7 @@ class API{
 
 		$packet = new AddEntityPacket();
 		$packet->entityRuntimeId = $eid;
-		$packet->type = 52;
+		$packet->type = self::ENTITY;
 		$packet->metadata = [Entity::DATA_LEAD_HOLDER_EID => [Entity::DATA_TYPE_LONG, -1], Entity::DATA_FLAGS => [Entity::DATA_TYPE_LONG, 0 ^ 1 << Entity::DATA_FLAG_SILENT ^ 1 << Entity::DATA_FLAG_INVISIBLE ^ 1 << Entity::DATA_FLAG_NO_AI], Entity::DATA_SCALE => [Entity::DATA_TYPE_FLOAT, 0],
 			Entity::DATA_NAMETAG => [Entity::DATA_TYPE_STRING, $title], Entity::DATA_BOUNDING_BOX_WIDTH => [Entity::DATA_TYPE_FLOAT, 0], Entity::DATA_BOUNDING_BOX_HEIGHT => [Entity::DATA_TYPE_FLOAT, 0]];
 		foreach ($players as $player){
@@ -67,9 +68,11 @@ class API{
 	 * @internal param Player $players To who to send* To who to send
 	 */
 	public static function sendBossBarToPlayer(Player $player, int $eid, string $title, $ticks = null){
+		self::removeBossBar([$player], $eid);//remove same bars
+
 		$packet = new AddEntityPacket();
 		$packet->entityRuntimeId = $eid;
-		$packet->type = 52;
+		$packet->type = self::ENTITY;
 		$packet->position = $player->getPosition()->asVector3()->subtract(0, 28);
 		$packet->metadata = [Entity::DATA_LEAD_HOLDER_EID => [Entity::DATA_TYPE_LONG, -1], Entity::DATA_FLAGS => [Entity::DATA_TYPE_LONG, 0 ^ 1 << Entity::DATA_FLAG_SILENT ^ 1 << Entity::DATA_FLAG_INVISIBLE ^ 1 << Entity::DATA_FLAG_NO_AI], Entity::DATA_SCALE => [Entity::DATA_TYPE_FLOAT, 0],
 			Entity::DATA_NAMETAG => [Entity::DATA_TYPE_STRING, $title], Entity::DATA_BOUNDING_BOX_WIDTH => [Entity::DATA_TYPE_FLOAT, 0], Entity::DATA_BOUNDING_BOX_HEIGHT => [Entity::DATA_TYPE_FLOAT, 0]];
