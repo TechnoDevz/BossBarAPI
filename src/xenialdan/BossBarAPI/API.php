@@ -38,7 +38,7 @@ class API{
 		foreach ($players as $player){
 			$pk = clone $packet;
 			$pk->position = $player->getPosition()->asVector3()->subtract(0, 28);
-			$player->dataPacket($pk);
+            $player->sendDataPacket($pk);
 		}
 
 		$bpk = new BossEventPacket(); // This updates the bar
@@ -76,7 +76,7 @@ class API{
 		$packet->position = $player->getPosition()->asVector3()->subtract(0, 28);
 		$packet->metadata = [Entity::DATA_LEAD_HOLDER_EID => [Entity::DATA_TYPE_LONG, -1], Entity::DATA_FLAGS => [Entity::DATA_TYPE_LONG, 0 ^ 1 << Entity::DATA_FLAG_SILENT ^ 1 << Entity::DATA_FLAG_INVISIBLE ^ 1 << Entity::DATA_FLAG_NO_AI], Entity::DATA_SCALE => [Entity::DATA_TYPE_FLOAT, 0],
 			Entity::DATA_NAMETAG => [Entity::DATA_TYPE_STRING, $title], Entity::DATA_BOUNDING_BOX_WIDTH => [Entity::DATA_TYPE_FLOAT, 0], Entity::DATA_BOUNDING_BOX_HEIGHT => [Entity::DATA_TYPE_FLOAT, 0]];
-		$player->dataPacket($packet);
+        $player->sendDataPacket($packet);
 
 		$bpk = new BossEventPacket(); // This updates the bar. According to shoghi this should not even be needed, but #blameshoghi, it doesn't update without
 		$bpk->bossEid = $eid;
@@ -87,7 +87,7 @@ class API{
 		$bpk->color = 0;//TODO: remove. Shoghi deleted that unneeded mess that was copy-pasted from MC-JAVA
 		$bpk->overlay = 0;//TODO: remove. Shoghi deleted that unneeded mess that was copy-pasted from MC-JAVA
 		$bpk->playerEid = 0;//TODO TEST!!!
-		$player->dataPacket($bpk);
+        $player->sendDataPacket($bpk);
 	}
 
 	/**
