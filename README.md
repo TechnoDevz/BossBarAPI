@@ -1,7 +1,9 @@
 # BossBarAPI
-BossBarAPI for PocketMine. Inspired by https://github.com/InventivetalentDev/BossBarAPI 
+Boss status bar library for PocketMine. 
 
-Poggit status + download: [![Poggit-CI](https://poggit.pmmp.io/ci.badge/thebigsmileXD/BossBarAPI/BossBarAPI)](https://poggit.pmmp.io/ci/thebigsmileXD/BossBarAPI/BossBarAPI)
+Poggit status + download:
+
+[![Poggit-CI](https://poggit.pmmp.io/ci.badge/thebigsmileXD/BossBarAPI/BossBarAPI)](https://poggit.pmmp.io/ci/thebigsmileXD/BossBarAPI/BossBarAPI)
 
 This API makes sending, changing and updating the "Boss Bar" known from the EnderDragon or the Wither easy!
 
@@ -11,8 +13,9 @@ Below are code examples of 2 plugins that use this API so you can easily learn h
 
 Enjoy!
 
-## Annotation
-Inside of this project there is a SendTask class. With that class you can easily set up a scheduled task that calls a function (must be called "sendBossBar") in your Plugin, with which you then can update its text or fill stage :) 
+## Annotations
+- This is not a standalone plugin, but a Virion. see [Poggit-CI](https://poggit.pmmp.io) to learn about virions
+- Inside of this project there is a SendTask class. With that class you can easily set up a scheduled task that calls a function (must be called "sendBossBar") in your Plugin, with which you then can update its text or fill stage :) 
 
 ## Usage
 **To see the usage, check out these plugins:**
